@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='TTUNION_verify' content='b846c3c2b85efabc496d2a2b8399cd62'>
+    <meta name="sogou_site_verification" content="gI1bINaJcL" />
+    <meta name="360-site-verification" content="37ae9186443cc6e270d8a52943cd3c5a" />
+    <meta name="baidu_union_verify" content="99203948fbfbb64534dbe0f030cbe817">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="AUI, a-ui.com">
+    <meta name="baidu-site-verification" content="ZVPGgtpUfW" />
+    <link href="..\css\base.css" rel="stylesheet" type="text/css" />
+    <link href="..\css\style.css" rel="stylesheet" type="text/css" />
+    <title>抽奖管理</title>
+    <style>
+        .header {
+            margin: 10px 20px 18px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+        
+        .header .flex_row {
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+        
+        .header .get_num {
+            padding: 4px 8px;
+            border: 1px solid #FF9054;
+            color: #FF9054;
+            font-size: 11px;
+            line-height: 11px;
+            border-radius: 4px;
+        }
+        
+        .header .prescr {
+            color: #065FBB;
+        }
+        
+        .prize_list {
+            margin: 0 20px;
+        }
+        
+        .title {
+            text-align: center;
+        }
+        
+        .prize_list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        table th,
+        table td {
+            border: 1px solid #E1E1E1;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        th {
+            height: 38px;
+            background-color: #EEF7FE;
+            color: #212121;
+        }
+        
+        td {
+            height: 40px;
+            padding: 8px;
+            color: #616161;
+        }
+        
+        .btn {
+            padding: 0 8px;
+        }
+        
+        .receive,
+        .notyet {
+            font-size: 10px;
+            padding: 2px 0px;
+            width: 100%;
+            text-align: center;
+            border-radius: 2px;
+            color: #F56045;
+            background-color: #FCF8F4;
+        }
+        
+        .notyet {
+            color: #065FBB;
+            background-color: #EEF7FE;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div>
+            <span class="color_33">抽奖链接：</span>
+            <span class="color_8d">http://www.jihui.com/choujiang.html</span>
+        </div>
+        <div class="flex_row">
+            <div>
+                <span class="color_33 ">随机码：</span>
+                <span class="color_8d num"></span>
+                <span class="prescr time_state"></span>
+            </div>
+            <div class="get_num" onclick="getNum()">获取随机码</div>
+        </div>
+    </div>
+    <div class="prize_list">
+        <div class="title">中奖列表</div>
+        <table>
+            <tr>
+                <th>中奖人</th>
+                <th>奖项</th>
+                <th>电话号码</th>
+                <th>操作</th>
+            </tr>
+        </table>
+    </div>
+</body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/data.init.js"></script>
+<script src="../js/data.js"></script>
+<script type="text/javascript">
+    var parma = {
+        activities_id: getUrlParam("id") || "86",
+        page: "",
+        limit: ""
+    }
+
+    $(function() {
+        getList(parma);
+    })
+
+    //中奖列表
+    function getList(parma) {
+        var prizeList = getPrizesList(parma); //获取中奖列表
+
+        // 测试数据
+        // prizeList = {
+        //     "message": "",
+        //     "code": "200",
+        //     "data": {
+        //         "total": "1",
+        //         "header": [],
+        //         "rows": [{
+        //             "id": "1",
+        //             "activities_id": "", //活动id 
+        //             "name": "0", //奖项名称 
+        //             "prizes": "1", //奖品 
+        //             "take_prizes_time": "123", //领奖时间
+        //             "is_take": "1", //是否领奖1是0否 
+        //             "username": "123", //中奖人姓名 
+        //             "phone": "123" //中奖人手机号码 
+        //         }, {
+        //             "id": "2",
+        //             "activities_id": "", //活动id 
+        //             "name": "0", //奖项名称 
+        //             "prizes": "1", //奖品 
+        //             "take_prizes_time": "123", //领奖时间
+        //             "is_take": "0", //是否领奖1是0否 
+        //             "username": "123", //中奖人姓名 
+        //             "phone": "123" //中奖人手机号码 
+        //         }]
+        //     },
+        //     "result": "1"
+        // }
+
+        if (prizeList.data.total == "0") {
+            $("table").append(`<tr><td colspan="5" class="color_b9">暂无人中奖</td></tr>`)
+        } else {
+            var data = prizeList.data.rows;
+            data.forEach(item => {
+                if (item.is_take == "1") {
+                    $("table").append(`<tr>
+                        <td>${item.username}</td>
+                        <td>${item.name}</td>
+                        <td>${item.phone}</td>
+                        <td class="color_b9" onclick="toDetail(${item.id})">详情</td>
+                    </tr>`)
+                } else {
+                    $("table").append(`<tr>
+                        <td>${item.username}</td>
+                        <td>${item.name}</td>
+                        <td>${item.phone}</td>
+                        <td class="btn">
+                        <div class="receive" onclick="receivePrize(this,${item.id})">领取</div>
+                        <div class="notyet" onclick="delPrizes(${item.id})">未到</div>
+                        </td>
+                    </tr>`)
+                }
+            });
+        }
+    }
+
+    // 获取随机码
+    function getNum() {
+        var randomCode = setRandomCode({
+            activities_id: parma.activities_id
+        });
+        // 测试数据
+        // randomCode = {
+        //     "message": "",
+        //     "code": "200",
+        //     "data": {
+        //         "num": "860028", //随机码 
+        //         "time": "1597310260" //到期时间
+        //     },
+        //     "result": "1"
+        // }
+        $(".num").html(randomCode.data.num);
+        $(".time_state").html("");
+        var setState = setInterval(function() {
+            var time = new Date() / 1000;
+            if (randomCode.data.time < time) {
+                $(".time_state").html("（已过期）");
+                clearInterval(setState);
+            }
+            console.log(time);
+        }, 1000);
+    }
+
+    function toDetail(id) {
+        $(location).attr("href", `prizeInfo.html?id=${id}`);
+    }
+
+    function receivePrize(e, id) {
+        var result = setReceive({
+            id
+        });
+        if (result != "1") {
+            return;
+        }
+        var tr = $(e).parent().parent();
+        tr.append(`<td class="color_b9" onclick="toDetail(${id})">详情</td>`);
+        $(e).parent().remove();
+    }
+
+    function delPrizes(id) {
+        var result = setDelPrizes({
+            id
+        });
+        if (result != "1") {
+            return;
+        }
+        $("table").html(`<tr>
+                <th>中奖人</th>
+                <th>奖项</th>
+                <th>电话号码</th>
+                <th>操作</th>
+            </tr>`);
+        getList(parma);
+    }
+</script>
+
+</html>

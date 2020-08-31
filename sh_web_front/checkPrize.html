@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='TTUNION_verify' content='b846c3c2b85efabc496d2a2b8399cd62'>
+    <meta name="sogou_site_verification" content="gI1bINaJcL" />
+    <meta name="360-site-verification" content="37ae9186443cc6e270d8a52943cd3c5a" />
+    <meta name="baidu_union_verify" content="99203948fbfbb64534dbe0f030cbe817">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="AUI, a-ui.com">
+    <meta name="baidu-site-verification" content="ZVPGgtpUfW" />
+    <link href="..\css\base.css" rel="stylesheet" type="text/css" />
+    <link href="..\css\style.css" rel="stylesheet" type="text/css" />
+    <title>查看奖项</title>
+    <style>
+        .line {
+            height: 8px;
+        }
+        
+        li {
+            height: 54px;
+            border-bottom: 1px solid #E5E5E5;
+            padding: 0 18px;
+        }
+        
+        .prize,
+        .num {
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .prize::before,
+        .num::after {
+            display: inline-block;
+            content: "";
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+            background: url("../img/icon_manage_reduce@2x.png") no-repeat center/cover;
+        }
+        
+        .num {
+            font-weight: bold;
+        }
+        
+        .num::after {
+            width: 8px;
+            height: 14px;
+            margin-left: 10px;
+            margin-right: 0px;
+            background: url("../img/icon_btn_more_jt@2x.png") no-repeat center/cover;
+        }
+        
+        .add_btn {
+            font-size: 15px;
+            font-weight: 500;
+            height: 36px;
+            line-height: 36px;
+            padding-left: 24px;
+            padding-right: 18px;
+            display: flex;
+            align-items: center;
+            border-radius: 18px;
+            border: 1px solid #DCDCDC;
+            width: 130px;
+            margin: 34px auto 0;
+        }
+        
+        .add_btn::before {
+            content: "";
+            display: inline-block;
+            height: 14px;
+            width: 14px;
+            background: url("../img/icon_manage_add@2x.png") no-repeat center/cover;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="line bgc_f6"></div>
+    <ul></ul>
+    <div class="add_btn color_8d" onclick="edit_addPrize()">添加奖项</div>
+
+</body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/data.init.js"></script>
+<script src="../js/data.js"></script>
+<script type="text/javascript">
+    var activities_id = getUrlParam("activities_id") || "86";
+    var prizesConfig = getPrizesConfig({
+        activities_id
+    });
+    $(function() {
+
+        // 测试数据
+        // prizesConfig = {
+        //     "message": "",
+        //     "code": "200",
+        //     "data": [{
+        //         "id": "6", //设置id 
+        //         "name": "一等奖", //奖项名称
+        //         "prizes": "test", //奖品
+        //         "num": "50", //奖品数量 
+        //         "prizes_num": "10" //每次抽奖数量 
+        //     }],
+        //     "result": "1"
+        // }
+        if (prizesConfig.data.length == 0) {
+            $("ul").html("暂无奖项");
+            $("ul").addClass("nodata");
+        } else {
+            prizesConfig.data.forEach((item) => {
+                $("ul").append(`<li class="flex_row" onclick="edit_addPrize(${item.id})">
+                    <div class="prize color_33">${item.name}</div>
+                    <div class="num color_21">${item.num}</div>
+                </li>`)
+            });
+        }
+
+    })
+
+    function edit_addPrize(id) {
+        if (id) {
+            $(location).attr('href', `addPrize.html?id=${id}&activities_id=${activities_id}`);
+            return;
+        }
+        $(location).attr('href', `addPrize.html`);
+    }
+</script>
+
+</html>

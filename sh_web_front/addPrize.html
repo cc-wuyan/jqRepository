@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='TTUNION_verify' content='b846c3c2b85efabc496d2a2b8399cd62'>
+    <meta name="sogou_site_verification" content="gI1bINaJcL" />
+    <meta name="360-site-verification" content="37ae9186443cc6e270d8a52943cd3c5a" />
+    <meta name="baidu_union_verify" content="99203948fbfbb64534dbe0f030cbe817">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="AUI, a-ui.com">
+    <meta name="baidu-site-verification" content="ZVPGgtpUfW" />
+    <link href="..\css\base.css" rel="stylesheet" type="text/css" />
+    <link href="..\css\style.css" rel="stylesheet" type="text/css" />
+    <title>添加奖项</title>
+    <style>
+        .flex_row {
+            font-size: 15px;
+            font-weight: 500;
+            height: 54px;
+            line-height: 54px;
+            margin: 0 20px;
+            border-bottom: 1px solid #E5E5E5;
+        }
+        
+        input {
+            border: unset;
+            font-size: 14px;
+            font-family: PingFang SC;
+            font-weight: 500;
+            width: 170px;
+            text-align: right;
+        }
+        
+        input::-webkit-input-placeholder {
+            /* WebKit browsers 适配谷歌 */
+            color: #B9B9B9;
+        }
+        
+        input:-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 适配火狐 */
+            color: #B9B9B9;
+        }
+        
+        input::-moz-placeholder {
+            /* Mozilla Firefox 19+ 适配火狐 */
+            color: #B9B9B9;
+        }
+        
+        input:-ms-input-placeholder {
+            /* Internet Explorer 10+  适配ie*/
+            color: #B9B9B9;
+        }
+        
+        .input_wrapper {
+            position: relative;
+        }
+        
+        .save_btn {
+            font-size: 16px;
+            font-weight: 500;
+            height: 40px;
+            width: 226px;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 20px;
+            background-color: #1B7AFC;
+            margin: 38px auto 0;
+        }
+        
+        .tips {
+            position: absolute;
+            line-height: 1;
+            font-size: 12px;
+            top: 38px;
+            right: 0;
+            color: #FF5233;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex_row">
+        <div>奖项名称</div>
+        <div class="input_wrapper">
+            <input name="name" type="text" placeholder="请输入奖项名称，如一等奖" maxlength="10">
+            <div class="tips"></div>
+        </div>
+    </div>
+    <div class="flex_row">
+        <div>奖品名称</div>
+        <div class="input_wrapper">
+            <input name="prizes" type="text" placeholder="请输入该奖项奖品的名称" maxlength="10">
+            <div class="tips"></div>
+        </div>
+    </div>
+    <div class="flex_row">
+        <div>奖品数量</div>
+        <div class="input_wrapper">
+            <input type="number" name="num" placeholder="请输入该奖项数量">
+            <div class="tips"></div>
+        </div>
+    </div>
+    <div class="flex_row">
+        <div>每次抽取数量</div>
+        <div class="input_wrapper">
+            <input type="number" name="prizes_num" placeholder="请输入每次抽取的数量">
+            <div class="tips"></div>
+        </div>
+    </div>
+    <div class="save_btn" onclick="save()">保存</div>
+</body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/data.init.js"></script>
+<script src="../js/data.js"></script>
+<script type="text/javascript">
+    $(function() {
+        // 控制输入框只能输入整数，且不能输入正负符号
+        $("[type='number']").keydown(function(e) {
+            if (e.keyCode === 110) {
+                $(this).siblings(".tips").html("只能输入整数");
+                $(this).siblings(".tips").css("display", "block");
+                return false;
+            } else {
+                $(this).siblings(".tips").css("display", "none");
+            }
+            switch (e.keyCode) {
+                case 107:
+                case 109:
+                case 187:
+                case 189:
+                    return false;
+                    break;
+                default:
+                    break;
+            }
+        });
+        $("input").blur(function() {
+            $(this).siblings(".tips").css("display", "none");
+        });
+        $("input").focus(function() {
+            $(this).siblings(".tips").css("display", "none");
+        });
+        var id = getUrlParam("id");
+        // 如果有传值，则回填数据
+        if (id) {
+            var activities_id = getUrlParam("activities_id");
+            var id = getUrlParam("id");
+            var item = getPrizesConfig({
+                activities_id
+            });
+            // 测试数据
+            item = {
+                "message": "",
+                "code": "200",
+                "data": [{
+                    "id": "6", //设置id 
+                    "name": "一等奖", //奖项名称
+                    "prizes": "test", //奖品
+                    "num": "50", //奖品数量 
+                    "prizes_num": "10" //每次抽奖数量 
+                }],
+                "result": "1"
+            }
+            var data = {}
+            item.data.forEach(el => {
+                if (el.id == id) {
+                    data = el;
+                }
+            });
+            $("[name = 'name']").val(data.name);
+            $("[name = 'prizes']").val(data.prizes);
+            $("[name = 'num']").val(data.num);
+            $("[name = 'prizes_num']").val(data.prizes_num);
+        }
+    })
+
+    function save() {
+        var parma = {};
+        var flag = true;
+        $("input").each(function() {
+            if ($(this).val() == "") {
+                flag = false;
+                $(this).siblings(".tips").html("不能为空");
+                $(this).siblings(".tips").css("display", "block");
+            }
+            parma[$(this).attr("name")] = $(this).val();
+        });
+        // 如果有为空的，则不保存
+        if (!flag) {
+            return;
+        }
+        if (getUrlParam("id")) {
+            parma.id = getUrlParam("id")
+        }
+        editPrizesConfig(parma);
+    }
+</script>
+
+</html>

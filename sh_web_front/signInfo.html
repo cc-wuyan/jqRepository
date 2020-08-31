@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='TTUNION_verify' content='b846c3c2b85efabc496d2a2b8399cd62'>
+    <meta name="sogou_site_verification" content="gI1bINaJcL" />
+    <meta name="360-site-verification" content="37ae9186443cc6e270d8a52943cd3c5a" />
+    <meta name="baidu_union_verify" content="99203948fbfbb64534dbe0f030cbe817">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="AUI, a-ui.com">
+    <meta name="baidu-site-verification" content="ZVPGgtpUfW" />
+    <link href="..\css\base.css" rel="stylesheet" type="text/css" />
+    <link href="..\css\style.css" rel="stylesheet" type="text/css" />
+    <title>报名详情</title>
+    <style>
+        body {
+            height: 100vh;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .color_61 {
+            font-size: 14px;
+        }
+        
+        .tip {
+            background-color: #EEF7FE;
+            padding: 8px 20px;
+            font-size: 13px;
+            color: #0071E6;
+        }
+        
+        .chunk {
+            padding: 8px 0;
+            margin: 0 20px;
+            border-bottom: 1px solid #E5E5E5;
+        }
+        
+        .flex_row {
+            padding: 8px 0;
+        }
+        
+        .button_wrapper {
+            display: flex;
+            width: 100vw;
+            justify-content: center;
+            position: absolute;
+            bottom: 28px;
+        }
+        
+        .nopass,
+        .pass {
+            width: 150px;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+        
+        .pass {
+            background-color: #1B7AFC;
+            margin-left: 14px;
+        }
+    </style>
+</head>
+
+<body class="bgc_f6 color_33">
+    <div class="tip">该报名人需要审核</div>
+    <div class="white_bgc">
+        <div class="chunk">
+            <div class="flex_row ">
+                <div>票种名称</div>
+                <div class="color_61">VIP席</div>
+            </div>
+            <div class="flex_row">
+                <div>票种金额</div>
+                <div class="color_61">￥100</div>
+            </div>
+            <div class="flex_row">
+                <div>报名转态</div>
+                <div class="color_61">待审核</div>
+            </div>
+        </div>
+    </div>
+    <div class="white_bgc">
+        <div class="chunk">
+            <div class="flex_row">
+                <div>姓名</div>
+                <div class="color_61">宋江</div>
+            </div>
+            <div class="flex_row">
+                <div>手机</div>
+                <div class="color_61">13602560288</div>
+            </div>
+            <div class="flex_row">
+                <div>公司</div>
+                <div class="color_61">深圳市极会科技有限公司</div>
+            </div>
+        </div>
+    </div>
+    <div class="white_bgc">
+        <div class="chunk">
+            <div class="flex_row">
+                <div>订单编号：</div>
+                <div class="color_61">H23546458321230</div>
+            </div>
+            <div class="flex_row">
+                <div>创建时间：</div>
+                <div class="color_61">2019-06-08 12:23</div>
+            </div>
+        </div>
+    </div>
+    <div class="button_wrapper">
+        <div class="nopass color_21 white_bgc">不通过</div>
+        <div class="pass white_color">通过</div>
+    </div>
+
+</body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/data.init.js"></script>
+<script src="../js/data.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $(".pass").click(function() {
+            console.log("通过");
+        })
+        $(".nopass").click(function() {
+            console.log("不通过");
+        })
+    })
+</script>
+
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='TTUNION_verify' content='b846c3c2b85efabc496d2a2b8399cd62'>
+    <meta name="sogou_site_verification" content="gI1bINaJcL" />
+    <meta name="360-site-verification" content="37ae9186443cc6e270d8a52943cd3c5a" />
+    <meta name="baidu_union_verify" content="99203948fbfbb64534dbe0f030cbe817">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="AUI, a-ui.com">
+    <meta name="baidu-site-verification" content="ZVPGgtpUfW" />
+    <link href="..\css\base.css" rel="stylesheet" type="text/css" />
+    <link href="..\css\style.css" rel="stylesheet" type="text/css" />
+    <title>赞助详情</title>
+    <style>
+        body {
+            height: 100vh;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .color_61 {
+            font-size: 14px;
+        }
+        
+        .tip {
+            background-color: #FFFCF8;
+            padding: 8px 20px;
+            font-size: 13px;
+            color: #FF5B5B;
+        }
+        
+        .chunk {
+            padding: 8px 0;
+            margin: 0 20px;
+            border-bottom: 1px solid #E5E5E5;
+        }
+        
+        .flex_row {
+            padding: 8px 0;
+        }
+        
+        .button_wrapper {
+            display: flex;
+            width: 100vw;
+            justify-content: center;
+            position: absolute;
+            bottom: 28px;
+        }
+        
+        .nopass,
+        .pass {
+            width: 150px;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+        
+        .pass {
+            background: url("../img/icon_btn_140@2x.png") no-repeat center/cover;
+            margin-left: 14px;
+        }
+    </style>
+</head>
+
+<body class="bgc_f6 color_33">
+    <div class="tip"></div>
+    <div class="white_bgc">
+        <div class="chunk">
+            <div class="flex_row ">
+                <div>赞助名称</div>
+                <div class="color_61 sponsorships_name"></div>
+            </div>
+            <div class="flex_row">
+                <div>赞助明细</div>
+                <div class="color_61 money"></div>
+            </div>
+            <div class="flex_row">
+                <div>赞助状态</div>
+                <div class="color_61 status"></div>
+            </div>
+            <div class="flex_row">
+                <div>支付方式</div>
+                <div class="color_61 pay_type"></div>
+            </div>
+        </div>
+    </div>
+    <div class="white_bgc">
+        <div class="chunk">
+            <div class="flex_row">
+                <div>姓名</div>
+                <div class="color_61 name"></div>
+            </div>
+            <div class="flex_row">
+                <div>手机</div>
+                <div class="color_61 phone"></div>
+            </div>
+            <div class="flex_row">
+                <div>单位名称</div>
+                <div class="color_61 company_name"></div>
+            </div>
+        </div>
+    </div>
+    <div class="white_bgc">
+        <div class="chunk">
+            <div class="flex_row">
+                <div>订单编号：</div>
+                <div class="color_61 number"></div>
+            </div>
+            <div class="flex_row">
+                <div>创建时间：</div>
+                <div class="color_61 createtime"></div>
+            </div>
+        </div>
+    </div>
+    <div class="button_wrapper">
+        <div class="nopass color_21 white_bgc" onclick="nopass()">不通过</div>
+        <div class="pass white_color" onclick="pass()">通过</div>
+    </div>
+
+</body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/data.init.js"></script>
+<script src="../js/data.js"></script>
+<script type="text/javascript">
+    var id = getUrlParam("id") || "1";
+    $(function() {
+        var sponsorInfo = getSponsorshipsInfo({
+            id
+        });
+        sponsorInfo = {
+            "message": "",
+            "code": "200",
+            "data": {
+                "id": "1",
+                "number": "H23546458321230", //订单编号 
+                "money": "100", //赞助金额，当为现金赞助时有值
+                "company_name": "深圳内江商会", //单位名称
+                "name": "宋江", //姓名
+                "phone": "13602560288", //手机号码
+                "content": "", //物品赞助内容，当为物品赞助时有值 
+                "status": "1", //状态 1待审核 2已通过 3已拒绝
+                "pay_type": "wechat", //支付类型wechat微信支付 alipay支付宝 wallet钱包支付（当为现金赞助时有值)
+                "type": "1", //赞助类型 1现金赞助 2物品赞助 
+                "is_offline": "0", //是否线下付款 1是0否(当为现金赞助时使用) 
+                "createtime": "1597396499", //赞助时间 
+                "sponsorships_name": "友情赞助" //赞助名称 
+            },
+            "result": "1"
+        }
+        for (const key in sponsorInfo.data) {
+            var state = ["", "待审核", "已通过", "已拒绝"];
+            var pay_type = {
+                wechat: "微信支付",
+                alipay: "支付宝",
+                wallet: "钱包支付"
+            };
+            switch (key) {
+                case "money":
+                    if (sponsorInfo.data[key] != "") {
+                        sponsorInfo.data[key] = "￥" + sponsorInfo.data[key];
+                    } else {
+                        sponsorInfo.data[key] = sponsorInfo.data.content;
+                    }
+                    break;
+                case "status":
+                    sponsorInfo.data[key] = state[sponsorInfo.data[key]];
+                    break;
+                case "pay_type":
+                    // 当物品赞助时，支付方式为"无"
+                    if (sponsorInfo.data.type == "2") {
+                        sponsorInfo.data[key] = "无";
+                    } else if (sponsorInfo.data.is_offline == "1") {
+                        sponsorInfo.data[key] = "线下付款";
+                    } else {
+                        sponsorInfo.data[key] = pay_type[sponsorInfo.data[key]];
+                    }
+
+                    break;
+                case "createtime":
+                    sponsorInfo.data[key] = new Date(sponsorInfo.data[key] * 1000).toLocaleString().replace(/\//g, "-");
+
+                    break;
+                default:
+                    break;
+            }
+            $(`.${key}`).html(sponsorInfo.data[key]);
+        }
+
+    })
+
+    function pass() {
+        checkSponsorships({
+            sponsorships_id: id,
+            status: "2"
+        })
+    }
+
+    function nopass() {
+        checkSponsorships({
+            sponsorships_id: id,
+            status: "3"
+        })
+    }
+</script>
+
+</html>

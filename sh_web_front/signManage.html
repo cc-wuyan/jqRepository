@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='TTUNION_verify' content='b846c3c2b85efabc496d2a2b8399cd62'>
+    <meta name="sogou_site_verification" content="gI1bINaJcL" />
+    <meta name="360-site-verification" content="37ae9186443cc6e270d8a52943cd3c5a" />
+    <meta name="baidu_union_verify" content="99203948fbfbb64534dbe0f030cbe817">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="AUI, a-ui.com">
+    <meta name="baidu-site-verification" content="ZVPGgtpUfW" />
+    <link href="..\css\base.css" rel="stylesheet" type="text/css" />
+    <link href="..\css\style.css" rel="stylesheet" type="text/css" />
+    <title>报名管理</title>
+    <style>
+        .search {
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        input {
+            flex-grow: 1;
+            min-width: 120px;
+            height: 36px;
+            border: unset;
+            border-radius: 18px;
+            padding: 8px;
+            padding-left: 44px;
+            font-weight: 500;
+            font-family: PingFang SC;
+            font-size: 14px;
+            background: url("../img/icon_all_search@2x.png") no-repeat left;
+            background-size: 15px 15px;
+            background-position-x: 20px;
+            background-color: #F6F6F6;
+        }
+        
+        input::-webkit-input-placeholder {
+            /* WebKit browsers 适配谷歌 */
+            color: #BBBBBB;
+        }
+        
+        input:-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 适配火狐 */
+            color: #BBBBBB;
+        }
+        
+        input::-moz-placeholder {
+            /* Mozilla Firefox 19+ 适配火狐 */
+            color: #BBBBBB;
+        }
+        
+        input:-ms-input-placeholder {
+            /* Internet Explorer 10+  适配ie*/
+            color: #BBBBBB;
+        }
+        
+        .has_content {
+            background-color: #fff;
+            border: 1px solid #F6F6F6;
+            color: #212121;
+        }
+        
+        button {
+            font-family: PingFang SC;
+            font-size: 14px;
+            flex-shrink: 0;
+            border: unset;
+            margin-left: 14px;
+        }
+        
+        li {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            margin: 0 16px;
+            line-height: 24px;
+            border-bottom: 1px solid #E8E8E8;
+        }
+        
+        li img {
+            width: 46px;
+            height: 46px;
+            margin-right: 10px;
+            vertical-align: top;
+            border-radius: 50%;
+        }
+        
+        .name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .font_13 {
+            font-size: 13px;
+            font-weight: 400;
+        }
+        
+        .price {
+            color: #0071E6;
+        }
+        
+        .coinage {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body class="bgc_f6 white_bgc">
+    <div class="search white_bgc">
+        <input type="text" name="search_content" placeholder="手机/报名人">
+        <button class="color_21">取消</button>
+    </div>
+    <ul class="white_bgc">
+        <li>
+            <img src="../img/user_img@2x.png">
+            <div class="flex_grow">
+                <div class="name color_33">陈明</div>
+                <div class="font_13 color_8d">13467889560</div>
+            </div>
+            <div class=" flex_col">
+                <div class="color_8d">收费</div>
+                <div class="price">￥120</div>
+            </div>
+            <div class="coinage font_13 flex_grow">未续费</div>
+        </li>
+        <li>
+            <img src="../img/user_img@2x.png">
+            <div class="flex_grow">
+                <div class="name color_33">陈明21</div>
+                <div class="font_13 color_8d">13467889560</div>
+            </div>
+            <div class=" flex_col">
+                <div class="color_8d">收费</div>
+                <div class="price">￥120</div>
+            </div>
+            <div class="coinage font_13 flex_grow">未续费</div>
+        </li>
+
+    </ul>
+
+</body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/data.init.js"></script>
+<script src="../js/data.js"></script>
+<script type="text/javascript">
+    $(function() {
+        // 取消按钮事件
+        $("button").click(function() {
+                $("input").val("");
+                $("input").removeClass("has_content");
+            })
+            // input失去光标
+        $("input").blur(function() {
+                if ($("input").val() == "") {
+                    $("input").removeClass("has_content");
+                }
+
+            })
+            // input得到光标
+        $("input").focus(function() {
+                $("input").addClass("has_content");
+            })
+            // input手机或键盘enter事件
+        $("input").keypress(function(e) {
+            if (e.which == 13) {}
+        })
+
+        $("li").click(function() {
+            var id = $(this).find(".name").html();
+            $(location).attr('href', `signInfo.html?id=${id}`);
+        })
+
+    })
+</script>
+
+</html>

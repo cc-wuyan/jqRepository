@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='TTUNION_verify' content='b846c3c2b85efabc496d2a2b8399cd62'>
+    <meta name="sogou_site_verification" content="gI1bINaJcL" />
+    <meta name="360-site-verification" content="37ae9186443cc6e270d8a52943cd3c5a" />
+    <meta name="baidu_union_verify" content="99203948fbfbb64534dbe0f030cbe817">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="AUI, a-ui.com">
+    <meta name="baidu-site-verification" content="ZVPGgtpUfW" />
+    <link href="..\css\base.css" rel="stylesheet" type="text/css" />
+    <link href="..\css\style.css" rel="stylesheet" type="text/css" />
+    <title>常见问题详情</title>
+    <style>
+        .chunk {
+            padding: 20px;
+        }
+        
+        .title {
+            font-size: 18px;
+        }
+        
+        .content {
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chunk">
+        <div class="title"></div>
+        <div class="content color_8d"></div>
+    </div>
+
+</body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/data.init.js"></script>
+<script src="../js/data.js"></script>
+<script type="text/javascript">
+    var questionsInfo = getQuestionsInfo({
+        id: 1
+    });
+    // 测试数据
+    // questionsInfo = {
+    //     "message": "操作成功",
+    //     "code": "200",
+    //     "data": {
+    //         "id": "1",
+    //         "title": "如何加入商会",
+    //         "content": "进入app首页，点击首页极会，可展开下拉，然后点击更多商会",
+    //         "time": "1599567730",
+    //         "status": "1",
+    //         "isdel": "0",
+    //         "createtime": "1599567730",
+    //         "updatetime": "1599567730"
+    //     },
+    //     "result": "1"
+    // }
+    $(function() {
+        $(".title").html(questionsInfo.data.title)
+        $(".content").html(questionsInfo.data.content)
+    })
+</script>
+
+</html>

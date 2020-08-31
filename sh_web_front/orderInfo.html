@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='TTUNION_verify' content='b846c3c2b85efabc496d2a2b8399cd62'>
+    <meta name="sogou_site_verification" content="gI1bINaJcL" />
+    <meta name="360-site-verification" content="37ae9186443cc6e270d8a52943cd3c5a" />
+    <meta name="baidu_union_verify" content="99203948fbfbb64534dbe0f030cbe817">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="AUI, a-ui.com">
+    <meta name="baidu-site-verification" content="ZVPGgtpUfW" />
+    <link href="..\css\base.css" rel="stylesheet" type="text/css" />
+    <link href="..\css\style.css" rel="stylesheet" type="text/css" />
+    <title>订单详情</title>
+    <style>
+        .header {
+            padding: 0 18px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .header::after {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 14px;
+            background: url("../img/icon_btn_more_jt@2x.png") no-repeat center/cover;
+        }
+        
+        .info {
+            padding: 14px 18px 0;
+            overflow: hidden;
+        }
+        
+        .info .flex_row {
+            justify-content: flex-start;
+            margin-bottom: 16px;
+        }
+        
+        .info .user_img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: top;
+        }
+        
+        .info .name {
+            font-size: 15px;
+            font-weight: bold;
+        }
+        
+        .info .act_img {
+            width: 110px;
+            height: 60px;
+            margin-right: 8px;
+            border-radius: 6px;
+        }
+        
+        .act_info {
+            overflow: hidden;
+        }
+        
+        .info .act_title {
+            font-size: 13px;
+        }
+        
+        .info .act_time,
+        .info .act_place {
+            font-size: 10px;
+            line-height: 18px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        
+        .ticket {
+            margin: 10px 16px 0;
+        }
+        
+        .ticket li {
+            border-radius: 6px;
+            height: 74px;
+            padding-left: 14px;
+            font-size: 13px;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+            background: url("../img//icon_tiket_bg@3x.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        
+        .ticket .num {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            line-height: 20px;
+            text-align: center;
+            font-size: 10px;
+            background-color: #F1F1F1;
+            margin-right: 14px;
+        }
+        
+        .ticket .flex_col {
+            line-height: 24px;
+            align-items: flex-start;
+        }
+        
+        .ticket .price {
+            color: #FF9054;
+        }
+        
+        .ticket .vertical {
+            writing-mode: vertical-rl;
+            letter-spacing: 2px;
+            width: 13%;
+        }
+        
+        .ticket .status {
+            color: #1B7AFC;
+            margin-right: 18px;
+        }
+        
+        .chunk {
+            font-size: 13px;
+            border-radius: 6px;
+            padding: 10px 10px;
+            margin: 0 16px 10px;
+            font-weight: 500;
+        }
+        
+        .chunk .flex_row {
+            height: 26px;
+        }
+        
+        .chunk .coinage {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .font_12 {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body class="bgc_f6">
+    <div class="header flex_row white_bgc">
+        <div class="color_33">报名人信息</div>
+    </div>
+    <div class="info white_bgc color_21">
+        <div class="flex_row">
+            <img class="user_img" src="../img/user_img@2x.png">
+            <div class="name ">李大钊</div>
+        </div>
+        <div class="flex_row">
+            <img class="act_img" src="../img/activity_img.png">
+            <div class="act_info">
+                <div class="act_title">
+                    深圳内江商会庆祝重阳节登山活动内江商会庆祝重阳节登山活动
+                </div>
+                <div class="act_time color_8d">
+                    时间：2019-10-20 12:00至2019-12-30 16:00
+                </div>
+                <div class="act_place color_8d">
+                    活动地点：深圳市宝安区宝源路5号市宝安区宝安街道街道街道
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="ticket">
+        <li class="flex_row">
+            <div class="num color_8d">1</div>
+            <div class="flex_col flex_grow">
+                <div>
+                    <span class="color_21">VIP席</span>
+                    <span class="color_21 price">￥100</span>
+                </div>
+                <div>
+                    <span class="color_21">宋江</span>
+                    <span class="color_8d">13659623010</span>
+                </div>
+            </div>
+            <div class="status">待审核</div>
+            <div class="color_8d vertical flex_row">
+                <div>电子票</div>
+            </div>
+        </li>
+    </ul>
+    <div class="chunk white_bgc">
+        <div class="flex_row">
+            <div class="color_33">总票价</div>
+            <div class="coinage">￥200</div>
+        </div>
+        <div class="flex_row">
+            <div class="color_33">订单实际支付金额</div>
+            <div class="coinage">￥200</div>
+        </div>
+    </div>
+    <div class="chunk white_bgc color_8d font_12">
+        <div class="flex_row font_12">
+            <div>订单编号：</div>
+            <div>D1564648531231</div>
+        </div>
+        <div class="flex_row font_12">
+            <div>创建时间：</div>
+            <div>2019-05-06 15:20</div>
+        </div>
+    </div>
+
+</body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/data.init.js"></script>
+<script src="../js/data.js"></script>
+<script type="text/javascript">
+</script>
+
+</html>

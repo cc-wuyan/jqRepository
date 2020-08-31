@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='TTUNION_verify' content='b846c3c2b85efabc496d2a2b8399cd62'>
+    <meta name="sogou_site_verification" content="gI1bINaJcL" />
+    <meta name="360-site-verification" content="37ae9186443cc6e270d8a52943cd3c5a" />
+    <meta name="baidu_union_verify" content="99203948fbfbb64534dbe0f030cbe817">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="AUI, a-ui.com">
+    <meta name="baidu-site-verification" content="ZVPGgtpUfW" />
+    <link href="..\css\base.css" rel="stylesheet" type="text/css" />
+    <link href="..\css\style.css" rel="stylesheet" type="text/css" />
+    <title>会币</title>
+</head>
+<style>
+    .header {
+        height: 144px;
+        overflow: hidden;
+        background: url("../img/img_my_intergral_bg@2x.png") center/cover;
+    }
+    
+    .header_title {
+        text-align: center;
+        font-size: 12px;
+        font-weight: 500;
+        margin-top: 24px;
+    }
+    
+    .coin {
+        height: 46px;
+        font-size: 35px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .coin::before {
+        display: inline-block;
+        content: "";
+        width: 30px;
+        height: 30px;
+        background: url("../img/icon_my_intergral_money@2x.png") center/cover;
+    }
+    
+    .info {
+        width: 100%;
+        position: absolute;
+        min-height: 50px;
+        top: 134px;
+        border-radius: 15px 15px 0px 0px;
+        padding: 10px 20px 0;
+    }
+    
+    li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+    }
+    
+    li:not(:last-of-type) {
+        border-bottom: 1px solid #F4F4F4;
+    }
+    
+    .coinage {
+        font-weight: 400;
+        font-size: 18px;
+    }
+    
+    .createtime {
+        font-size: 11px;
+        font-weight: 500;
+        margin-top: 4px;
+    }
+    
+    .item_title {
+        font-weight: bold;
+        height: 20px;
+    }
+</style>
+
+<body>
+
+    <div class="header">
+        <div class="header_title white_color">当前会币</div>
+        <div class="coin white_color"></div>
+    </div>
+    <div class="info white_bgc">
+        <ul></ul>
+    </div>
+
+</body>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/data.init.js"></script>
+<script src="../js/data.js"></script>
+<script type="text/javascript">
+    let clubgoldInfo = getClubgoldInfo(); //会币记录
+
+    //测试数据
+    clubgoldInfo = {
+        "message": "",
+        "code": "200",
+        "data": {
+            "total": "5",
+            "coin": "1",
+            "header": [],
+            "rows": [{
+                "type": "登录",
+                "coin": " 1",
+                "createtime": "2020-08-08 9:00",
+                "operator": "admin"
+            }]
+        },
+        "result": "1"
+    }
+    let data = clubgoldInfo.data;
+    $(function() {
+        if (data.length == 0 && data.coin == "0") {
+            $(".coin").html("0");
+            $(".info ul").html("暂无记录");
+            $(".info ul").addClass("nodata");
+        } else {
+            $(".coin").html(data.coin);
+            let row = data.rows;
+            row.forEach(item => {
+                $(".info ul").append(`<li>
+                <div>
+                    <div class="item_title">${item.type}</div>
+                    <div class="createtime color_b9">${item.createtime}</div>
+                </div>
+                <div class="coinage">+${item.coin}</div>
+            </li>`)
+            });
+        }
+    })
+</script>
+
+</html>

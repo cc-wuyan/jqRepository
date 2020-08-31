@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='TTUNION_verify' content='b846c3c2b85efabc496d2a2b8399cd62'>
+    <meta name="sogou_site_verification" content="gI1bINaJcL" />
+    <meta name="360-site-verification" content="37ae9186443cc6e270d8a52943cd3c5a" />
+    <meta name="baidu_union_verify" content="99203948fbfbb64534dbe0f030cbe817">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="AUI, a-ui.com">
+    <meta name="baidu-site-verification" content="ZVPGgtpUfW" />
+    <link href="..\css\base.css" rel="stylesheet" type="text/css" />
+    <link href="..\css\style.css" rel="stylesheet" type="text/css" />
+    <title>会币介绍</title>
+    <style>
+        .contain {
+            margin: 28px 16px 0;
+        }
+        
+        .white_chunk {
+            border-radius: 6px;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body class="bgc_f3">
+    <div class="contain">
+        <div class="title">如何获得会币</div>
+        <div class="white_chunk white_bgc">
+            <ul class="coinage_integral"></ul>
+        </div>
+    </div>
+</body>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/data.init.js"></script>
+<script src="../js/data.js"></script>
+<script type="text/javascript">
+    // 获取会币规则
+    var clubgold_explain = getClubgoldExplain();
+    // 测试数据
+    // clubgold_explain = {
+    //     "message": "",
+    //     "code": "200",
+    //     "data": [{
+    //         "key": "day", //标识（day表示每日share表示分享activities表示活动invitational表示邀请shopping表示购物） 
+    //         "integral": "100", //奖励积分 
+    //         "coinage": "200" //奖励会币 
+    //     }],
+    //     "result": "1"
+    // }
+    var data = clubgold_explain.data;
+    $(function() {
+        if (data.length > 0) {
+            data.forEach(item => {
+                switch (item.key) {
+                    case "day":
+                        $(".coinage_integral").append(`<li><div class='key'>每日登录</div><div class='coinage'>+${item.coinage} </div></li>`);
+                        break;
+                    case "share":
+                        $(".coinage_integral").append(`<li><div class='key'>每日分享</div><div class='coinage'>+${item.coinage} </div></li>`);
+                        break;
+                    case "activities":
+                        $(".coinage_integral").append(`<li><div class='key'>每次参与活动</div><div class='coinage'>+${item.coinage} </div></li>`);
+                        break;
+                    case "invitational":
+                        $(".coinage_integral").append(`<li><div class='key'>每次邀请新人</div><div class='coinage'>+${item.coinage} </div></li>`);
+                        break;
+                    case "shopping":
+                        $(".coinage_integral").append(`<li><div class='key'>每次购物</div><div class='coinage'>+${item.coinage} </div></li>`);
+                        break;
+
+                    default:
+                        break;
+                }
+            });
+        }
+    })
+</script>
+
+</html>

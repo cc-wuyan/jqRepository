@@ -1,0 +1,108 @@
+.title {
+    font-weight: bold;
+    color: #212121;
+    margin-bottom: 16px;
+}
+
+.nodata {
+    color: #DCDCDC;
+    text-align: center;
+    padding-top: 24px;
+}
+
+.coinage {
+    font-weight: bold;
+    color: #FF5233;
+}
+
+.coinage_integral li {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #666666;
+}
+
+.coinage_integral li:not(:last-of-type) {
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.coinage_integral .key {
+    display: flex;
+    align-items: center;
+}
+
+.coinage_integral .key::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #DCDCDC;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.flex_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex_col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex_grow {
+    flex-grow: 1;
+}
+
+.white_color {
+    color: #fff;
+}
+
+.black_color {
+    color: #000;
+}
+
+.color_8d {
+    color: #8D8D8D;
+}
+
+.color_b9 {
+    color: #b9b9b9;
+}
+
+.color_21 {
+    color: #212121;
+}
+
+.color_3e {
+    color: #3e3e3e;
+}
+
+.color_33 {
+    color: #333;
+}
+
+.color_61 {
+    color: #616161;
+}
+
+.white_bgc {
+    background-color: #fff;
+}
+
+.bgc_f3 {
+    background-color: #f3f3f3;
+}
+
+.bgc_f6 {
+    background-color: #f6f6f6;
+}
+
+.bgc_b9 {
+    background-color: #b9b9b9;
+}
