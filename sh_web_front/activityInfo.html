@@ -153,11 +153,11 @@
         <div class="title"></div>
         <div class="detail color_61">
             <div class="flex_row">
-                <img height="10px" src="../img/icon_details_read@2x.png" alt="">
+                <img height="10px" src="../img/icon_details_read@2x.png">
                 <div class="color_8d views_num"></div>
                 <img height="12px" class="collection" onclick="collect()">
                 <div class="color_8d collect_num"></div>
-                <img height="11px" src="../img/icon_details_share@2x.png" alt="">
+                <img height="11px" src="../img/icon_details_share@2x.png" onclick="shareActivity()">
                 <div class="color_8d retweets_num"></div>
             </div>
             <div class="flex_row">
@@ -211,7 +211,7 @@
         </div>
         <div class="flex_row btn">
             <div class="white_color is_focus" onclick="attention()"></div>
-            <div class="color_61">在线咨询</div>
+            <div class="color_61" onclick="onlineAsk()">在线咨询</div>
         </div>
     </div>
     <div class="chunk white_bgc">
@@ -234,7 +234,7 @@
     let id = getUrlParam("id"); //活动id
     let orgid = ""; //商会id
     let isFocus = ""; //是否关注该商会
-    let isColloectActivity = false; //是否收藏该活动
+    let iscollect = ""; //是否收藏该活动
 
     $(function() {
         getData();
@@ -242,10 +242,52 @@
 
     //获取活动详情
     function getData() {
-        let activitiesInfo = getActivitiesInfo({
-            sid,
-            id
-        }).data;
+        // let activitiesInfo = getActivitiesInfo({
+        //     sid,
+        //     id
+        // }).data;
+        let activitiesInfo = {
+            address: "地址",
+            allNum: "0",
+            collect_num: "0",
+            end_time: "2020-08-01 00:00:00",
+            id: "6",
+            img: "../img/acitcity_img2.png",
+            info: "活动详情",
+            is_collect: "0",
+            is_focus: "1",
+            is_signin: "0",
+            label: [{
+                id: "43",
+                name: "时政"
+            }, {
+                id: "44",
+                name: "疫情"
+            }],
+            label_ids: "43,44",
+            lat: "22.57004676667156",
+            lng: "113.8635989005009",
+            main_body: "1",
+            max_money: "0",
+            min_money: "0.00",
+            order_total: "0",
+            org_id: "75",
+            range: "1",
+            range_arr: ["1"],
+            release_company_name: "北方飞龙组织",
+            release_department_name: "秘书长",
+            release_img: "../img/sh_logo.png",
+            release_name: "北方飞龙组织",
+            retweets_num: "0",
+            signin_range: "1000",
+            signup_endtime: "2020-07-10 14:29:49",
+            start_time: "2020-07-30 00:00:00",
+            status: "2",
+            title: "活动标题1（16600000002在APP端发布）",
+            type_id: "6",
+            views_num: "0",
+        }
+
         orgid = activitiesInfo.org_id;
         isFocus = activitiesInfo.is_focus;
         for (const key in activitiesInfo) {
@@ -260,7 +302,12 @@
                     });
                     break;
                 case "is_focus":
+                    isFocus = activitiesInfo[key];
                     activitiesInfo[key] == 1 ? $(`.${key}`).html("已关注") : $(`.${key}`).html("关注");
+                    break;
+                case "is_collect":
+                    iscollect = activitiesInfo[key];
+                    activitiesInfo[key] == 1 ? $(".collection").attr("src", "../img/icon_activity_collection@2x.png") : $(".collection").attr("src", "../img/icon_details_collection@2x.png");
                     break;
                 case "main_body":
                     if (activitiesInfo[key] == 1) {
@@ -286,29 +333,23 @@
                     break;
             }
         }
-        // 收藏活动的列表
-        let activityList = getCollectActivityList().data.data;
-        activityList.forEach(item => {
-            if (item.id == id) {
-                isColloectActivity = true;
-            }
-        });
-        isColloectActivity ? $(".collection").attr("src", "../img/icon_activity_collection@2x.png") : $(".collection").attr("src", "../img/icon_details_collection@2x.png");
     }
     //点击关注商会和取消关注商会
     function attention() {
-        getData();
-        if (isFocus == "1") {
+        isFocus == 1 ?
+            cancelOrg({
+                id: orgid
+            }) :
             focusOrg({
                 orgid
             });
-        } else {
 
-        }
+
+        getData();
     }
     // 收藏活动和取消收藏活动
     function collect() {
-        isColloectActivity ? cancelCollectActivity({
+        iscollect == 1 ? cancelCollectActivity({
             sid,
             id
         }) : collectActivity({
@@ -317,6 +358,11 @@
         });
         getData();
     }
+
+    // 分享活动
+    function shareActivity() {}
+    // 咨询
+    function onlineAsk() {}
 </script>
 
 </html>

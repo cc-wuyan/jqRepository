@@ -1,5 +1,5 @@
-var base_apiurl = 'http://120.77.146.212/shanghui/test/public/';
-var app_apiurl = base_apiurl + "index.php/app/v1.0/";
+var base_apiurl = '';
+var app_apiurl = base_apiurl + "";
 
 var charge_instructions = app_apiurl + "baseconfig/getRechargeExplain"; //充值介绍
 var clubGold_introduce = app_apiurl + "coinWeb/introduce"; //会币积分介绍
@@ -37,17 +37,16 @@ function getDbData(_url, _dataparam, _post) {
         } else {
             htmlobj = ajaxgo(_url, _dataparam);
         }
-    }
+    } else {}
     return htmlobj;
 }
 
-function postdata(surl, param) {
+function postdata(url, param) {
     param.sid = getUrlParam("sid") || localStorage.getItem("sid");
-
-    var result = 0;
+    let result = 0;
     $.ajax({
         type: "post",
-        url: surl,
+        url: url,
         data: param,
         async: false,
         dataType: "json",
@@ -84,6 +83,8 @@ function ajaxgo(url, param) {
     jsondata = JSON.parse(jsondata.responseText);
     return jsondata;
 }
+
+
 
 //获取url中的参数
 function getUrlParam(name) {
